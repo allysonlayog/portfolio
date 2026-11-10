@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { asset } from '../asset.js'
 import { coverOf } from '../data/projects.js'
 import sizes from '../data/imageSizes.json'
 
@@ -8,12 +9,12 @@ export default function WorkTile({ project, big = false }) {
   const cover = coverOf(project)
   // Big tiles let the browser choose the large copy on wide screens.
   const hasBoth = big && cover.small !== cover.src && sizes[cover.small] && sizes[cover.src]
-  const srcSet = hasBoth ? `${cover.small} ${sizes[cover.small].width}w, ${cover.src} ${sizes[cover.src].width}w` : undefined
+  const srcSet = hasBoth ? `${asset(cover.small)} ${sizes[cover.small].width}w, ${asset(cover.src)} ${sizes[cover.src].width}w` : undefined
 
   return (
     <Link to={`/work/${project.slug}`} className="group relative block aspect-square overflow-hidden bg-ink/5">
       <img
-        src={cover.small}
+        src={asset(cover.small)}
         srcSet={srcSet}
         sizes={srcSet ? '(min-width: 640px) 50vw, 100vw' : undefined}
         alt=""

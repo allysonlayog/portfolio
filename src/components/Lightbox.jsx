@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { asset } from '../asset.js'
 
 const buttonClass = 'min-h-11 min-w-11 px-3 font-semibold text-white hover:text-rose'
 
@@ -52,7 +53,7 @@ export default function Lightbox({ images, index, onChange, onClose }) {
             </button>
           </div>
           <div className="flex min-h-0 flex-1 items-center justify-center px-4">
-            <img src={image.src} alt={image.alt} className="h-auto max-h-full w-auto max-w-full object-contain" />
+            <img src={asset(image.src)} alt={image.alt} className="h-auto max-h-full w-auto max-w-full object-contain" />
           </div>
           <div className="flex items-center justify-between gap-4 px-2 pb-2">
             <button type="button" onClick={() => step(-1)} className={buttonClass}>

@@ -26,6 +26,16 @@ because the files are far too big for a website (over 300 MB).
    `public/images/work/` and records their sizes. Requires ImageMagick.
 4. Add the image to its project in `src/data/projects.js`.
 
+## Publish to GitHub Pages
+
+The live site is https://allysonlayog.github.io/portfolio/
+
+```
+npm run deploy
+```
+
+This builds the site for the /portfolio/ address and pushes the built files to the gh-pages branch, which GitHub Pages serves. The source code on main is not changed by a deploy, so commit and push main separately. In the repo's Settings, Pages must be set to "Deploy from a branch", branch gh-pages, folder / (root).
+
 ## Before publishing
 
 - Have Allyson approve every project summary in `src/data/projects.js` (they are drafts).

@@ -1,3 +1,4 @@
+import { asset } from '../asset.js'
 import sizes from '../data/imageSizes.json'
 
 // Shows an image at its natural shape. Knowing the size up front stops the
@@ -9,7 +10,7 @@ import sizes from '../data/imageSizes.json'
 export default function Picture({ src, small, alt, sizes: sizesHint = '100vw', className = '', eager = false, fit = false, maxHeight }) {
   const size = sizes[src]
   const smallSize = small && small !== src ? sizes[small] : null
-  const srcSet = smallSize && size ? `${small} ${smallSize.width}w, ${src} ${size.width}w` : undefined
+  const srcSet = smallSize && size ? `${asset(small)} ${smallSize.width}w, ${asset(src)} ${size.width}w` : undefined
 
   // A fixed width keeps the image's space reserved while it loads.
   let style
@@ -20,7 +21,7 @@ export default function Picture({ src, small, alt, sizes: sizesHint = '100vw', c
 
   return (
     <img
-      src={src}
+      src={asset(src)}
       srcSet={srcSet}
       sizes={srcSet ? sizesHint : undefined}
       alt={alt}
