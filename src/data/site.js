@@ -1,8 +1,9 @@
 // Text and links used across the whole site.
 export const site = {
   name: 'Allyson Layog',
+  tagline: 'Creative designer and illustrator',
   intro:
-    "I'm a creative designer and illustrator from the Philippines, working across brands, packaging, events and character art.",
+    "I'm a creative designer and illustrator from the Philippines. I make brands, packaging, campaigns and illustrated worlds.",
   // Taken from the PDF. Allyson should confirm this is the address to publish.
   email: 'allyson.layog@gmail.com',
   // Add links here to show them on the Contact page, e.g.
@@ -27,7 +28,15 @@ export const about = {
     { course: 'Advertising Arts', school: 'University of Santo Tomas', period: '2016 to 2020' },
     { course: 'Computer Science', school: 'University of Santo Tomas', period: '2014 to 2016' },
   ],
-  tools: ['Photoshop', 'Illustrator', 'InDesign', 'Premiere Pro', 'After Effects', 'Canva'],
+  // mark is the short label drawn as the tool's icon. round: true draws a circle instead of a square.
+  tools: [
+    { name: 'Photoshop', mark: 'Ps' },
+    { name: 'Illustrator', mark: 'Ai' },
+    { name: 'InDesign', mark: 'Id' },
+    { name: 'Premiere Pro', mark: 'Pr' },
+    { name: 'After Effects', mark: 'Ae' },
+    { name: 'Canva', mark: 'C', round: true },
+  ],
   recognition: [
     "Santo Tomas Scholar and Dean's Lister #1, University of Santo Tomas",
     'IBM DB2 Academic Associate certification, 2015',

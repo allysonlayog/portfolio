@@ -1,0 +1,114 @@
+# Which original file becomes which image on the site.
+# Format: original file name in originals/portfolio-pics | path under public/images/work (no extension)
+# After changing this list, run: npm run images
+
+Canva - download (3).jpg | bayani/portrait-headdress
+Canva - download (4).png | bayani/portrait-makeup
+Canva - download (4).jpg | bayani/portrait-hibiscus
+Canva - download (5).jpg | bayani/portrait-flower-crown
+Canva - download.png | bayani/river
+Canva - download.jpg | bayani/palettes-red
+Canva - download (1).jpg | bayani/palettes-orange
+Canva - download (6).jpg | bayani/website-home
+Canva - download (5).png | bayani/website-sale
+Canva - download (2).jpg | bayani/business-cards
+
+Canva - download (21).jpg | mistborn/characters
+Canva - download (27).jpg | mistborn/kelsier
+Canva - download (26).jpg | mistborn/lord-ruler
+Canva - download (23).jpg | mistborn/props
+Canva - download (28).jpg | mistborn/kredik-shaw
+Canva - download (24).jpg | mistborn/throne-room
+Canva - download (25).jpg | mistborn/pits-of-hathsin
+Canva - download (11).jpg | mistborn/ballroom
+
+Canva - download (14).png | little-rotti/logos
+Canva - download (32).png | little-rotti/authentic-taste
+Canva - download (11).png | little-rotti/food
+
+Canva - download (19).png | petspeak/logo
+Canva - download (33).jpg | petspeak/probiotics
+Canva - download (14).jpg | petspeak/display-box
+
+Canva - download (7).jpg | pet-food/pate
+Canva - download (8).jpg | pet-food/gaucho
+
+Canva - download (10).jpg | logos/offscript
+logos.png | logos/sightlines
+Canva - download (12).png | logos/wonderq
+Canva - download (13).png | logos/insty-prints
+Canva - download (15).png | logos/aged-care-forum
+Canva - download (49).png | logos/team-champion
+
+Canva - download (48).png | packaging/yema-balls
+Canva - download (17).jpg | packaging/jacobina-dieline
+Canva - download (22).jpg | packaging/silka-dieline
+Canva - download (18).jpg | packaging/red-box
+Canva - download (19).jpg | packaging/kraft-box
+Canva - download (16).jpg | packaging/printing-crunch
+Canva - download (15).jpg | packaging/printing-boxes
+Canva - download (20).jpg | packaging/mechanical-drawing
+Canva - download (44).png | packaging/candy-label
+Canva - download (32).jpg | packaging/quaker-displays
+
+Canva - download (9).jpg | cafes/cups
+Canva - download (9).png | cafes/womens-month
+Canva - download (10).png | cafes/bigs-coffee
+
+Canva - download (6).png | surplus/outdoor-essentials
+Canva - download (39).png | surplus/sleeping-right
+Canva - download (40).png | surplus/gifts-for-moms
+Canva - download (41).png | surplus/celebrate-moms
+
+Canva - download (8).png | sky-fiber/unli-fiber
+Canva - download (38).png | sky-fiber/build-your-own
+Canva - download (43).png | sky-fiber/two-versions
+
+Canva - download (50).png | shopwise/holiday-hours
+Canva - download (51).png | shopwise/holiday-basket
+
+Canva - download (47).png | janus-steel/happening-now
+Canva - download (33).png | janus-steel/brochure
+Canva - download (31).png | janus-steel/doors-catalog
+
+Canva - download (28).png | sapphire/collection
+Canva - download (29).png | sapphire/banquet-chair
+Canva - download (30).png | sapphire/collections
+
+Canva - download (34).png | events/baby-fair-entrance
+Canva - download (35).png | events/grand-baby-fair
+Canva - download (36).png | events/information-counter
+Canva - download (37).png | events/package-counter
+Canva - download (42).png | events/pup-up-store
+Canva - download (20).png | events/gallant-mobile-bar
+
+Canva - download (26).png | youthcan/banner
+Canva - download (27).png | youthcan/long-banner
+Canva - download (25).png | youthcan/billboards
+Canva - download (23).png | youthcan/join-us
+Canva - download (24).png | youthcan/the-youth
+
+Canva - download (21).png | toy-kingdom/princess-dolls
+Canva - download (22).png | toy-kingdom/rainbows-and-unicorns
+
+Canva - download (35).jpg | merchandise/anniversary-mugs
+Canva - download (46).png | merchandise/doodle-mugs
+Canva - download (34).jpg | merchandise/christmas-tote
+
+Canva - download (29).jpg | photography/city-night
+Canva - download (30).jpg | photography/pool
+Canva - download (31).jpg | photography/sea-sunset
+
+Canva - download (12).jpg | illustration/golden-city
+flowers.png | illustration/flowers
+
+# Stills captured from the posted videos (see the links in src/data/projects.js)
+video-stills/ideas-positive.png | video/ideas-positive
+video-stills/lunar-new-year.png | video/lunar-new-year
+video-stills/toy-sale.png | video/toy-sale
+video-stills/mothers-day.png | video/mothers-day
+video-stills/calazin.png | video/calazin
+video-stills/shopwise-reel.png | video/shopwise-reel
+video-stills/piggy-bank.png | video/piggy-bank
+video-stills/three-day-sale.png | video/three-day-sale
+video-stills/loving-summer.png | video/loving-summer

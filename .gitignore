@@ -31,3 +31,14 @@ dist-ssr
 
 # Local editor and tool settings
 .claude
+
+# Local settings and keys
+.env
+.env.*
+!.env.example
+
+# Browser test output
+.playwright-mcp
+
+# Full-size original artwork (too big for the site; web copies are made from these)
+/originals

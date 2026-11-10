@@ -1,104 +1,135 @@
-import { useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import JustifiedRow from '../components/JustifiedRow.jsx'
+import { useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import Lightbox from '../components/Lightbox.jsx'
 import Picture from '../components/Picture.jsx'
-import { toRows } from '../data/layout.js'
+import WorkTile from '../components/WorkTile.jsx'
 import { projects } from '../data/projects.js'
 import { site } from '../data/site.js'
 import NotFound from './NotFound.jsx'
-import Print from '../components/Print.jsx'
 
-const tilts = [-2, 1.5, -1, 2.5, -2.5, 1, 2, -1.5]
+// Up to four other projects, ones that share a type first.
+function moreWork(project) {
+  const others = projects.filter((p) => p !== project)
+  const related = others.filter((p) => p.categories.some((c) => project.categories.includes(c)))
+  return [...related, ...others.filter((p) => !related.includes(p))].slice(0, 4)
+}
 
 export default function Project() {
   const { slug } = useParams()
-  const navigate = useNavigate()
-  const table = useRef(null)
   const [openIndex, setOpenIndex] = useState(null)
 
   const index = projects.findIndex((p) => p.slug === slug)
   if (index === -1) return <NotFound />
 
   const project = projects[index]
+  const previous = projects[(index - 1 + projects.length) % projects.length]
   const next = projects[(index + 1) % projects.length]
+  const [first, ...rest] = project.images
+
+  // The first image may fill the width but never goes taller than the screen.
+  // No image is shown bigger than its real size.
+  const renderImage = (image, position, sizes) => (
+    <figure key={image.src}>
+      <button
+        type="button"
+        onClick={() => setOpenIndex(position)}
+        aria-label={`View larger: ${image.alt}`}
+        className="group block w-full cursor-zoom-in"
+      >
+        <Picture
+          src={image.src}
+          small={image.small}
+          sizes={sizes}
+          alt=""
+          eager={position === 0}
+          fit
+          maxHeight={position === 0 ? '85vh' : undefined}
+          className={`bg-ink/5 transition duration-500 group-hover:scale-[1.02] ${position === 0 ? '' : 'mx-auto'}`}
+        />
+      </button>
+      {image.link && (
+        <a href={image.link} target="_blank" rel="noreferrer" className="mt-2 inline-block text-sm font-bold text-rose-ink hover:underline">
+          Watch: {image.alt}
+        </a>
+      )}
+    </figure>
+  )
 
   return (
-    <article className="px-4 sm:px-8">
+    <article>
       <title>{`${project.title}, ${site.name}`}</title>
-      <Link to="/work" className="font-bold underline underline-offset-4">
-        All work
-      </Link>
-      <h1 className="mt-4 max-w-6xl text-[15vw] font-extrabold leading-[0.88] tracking-tighter md:text-[9vw]">
-        {project.title}
-      </h1>
-      <p className="mt-5 max-w-2xl text-2xl font-semibold leading-tight">{project.summary}</p>
-      <p className="mt-2 font-medium">Move the prints around, or click one to see it larger.</p>
 
-      <div ref={table} className="mt-12 space-y-10">
-        {toRows(project.images, project.rows).map((row, rowIndex) => (
-          <JustifiedRow
-            key={row[0].src}
-            items={row}
-            minRatio={rowIndex === 0 ? 1.8 : 1.4}
-            getSrc={(image) => image.src}
-            renderItem={(image) => {
-              const position = project.images.indexOf(image)
-              return (
-                <Print
-                  label={`View larger: ${image.alt}`}
-                  rotate={tilts[position % tilts.length]}
-                  table={table}
-                  onOpen={() => setOpenIndex(position)}
-                  footer={
-                    image.link && (
-                      <a href={image.link} target="_blank" rel="noreferrer" className="mt-2 block text-sm font-bold underline">
-                        Watch: {image.alt}
-                      </a>
-                    )
-                  }
+      <div className="grid gap-8 px-4 pt-8 sm:px-6 lg:grid-cols-[minmax(18rem,24rem)_1fr] lg:gap-12">
+        <div className="lg:sticky lg:top-32 lg:self-start">
+          <Link to="/" className="text-sm font-bold uppercase tracking-widest text-ink/60 hover:text-rose-ink">
+            All work
+          </Link>
+          <ul aria-label="Type of work" className="mt-6 flex flex-wrap gap-2">
+            {project.categories.map((category) => (
+              <li key={category}>
+                <Link
+                  to={`/?filter=${encodeURIComponent(category)}`}
+                  className="inline-block rounded-full bg-rose px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-ink hover:bg-ink hover:text-paper"
                 >
-                  <Picture src={image.src} alt="" className="pointer-events-none" />
-                </Print>
-              )
-            }}
-          />
-        ))}
+                  {category}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <h1 className="mt-4 text-4xl font-extrabold leading-[0.95] tracking-tight text-rose-ink sm:text-5xl xl:text-6xl">
+            {project.title}
+          </h1>
+          <p className="mt-5 text-lg leading-relaxed text-ink/80">{project.summary}</p>
+          {project.credits && (
+            <p className="mt-4 text-sm text-ink/60">
+              Event photos:{' '}
+              {project.credits.map((credit, i) => (
+                <span key={credit.href}>
+                  {i > 0 && ', '}
+                  <a href={credit.href} target="_blank" rel="noreferrer" className="underline hover:text-rose-ink">
+                    {credit.label}
+                  </a>
+                </span>
+              ))}
+            </p>
+          )}
+          <p className="mt-6 text-sm text-ink/60">
+            {project.images.length} {project.images.length === 1 ? 'image' : 'images'}. Open any image to see it larger.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {renderImage(first, 0, '(min-width: 1024px) 70vw, 100vw')}
+          {rest.length > 0 && (
+            <div className="gap-4 sm:columns-2 [&>figure]:mb-4 [&>figure]:break-inside-avoid">
+              {rest.map((image, i) => renderImage(image, i + 1, '(min-width: 1024px) 35vw, (min-width: 640px) 50vw, 100vw'))}
+            </div>
+          )}
+        </div>
       </div>
 
-      {project.credits && (
-        <p className="mt-10 font-medium">
-          Photo credits:{' '}
-          {project.credits.map((credit, i) => (
-            <span key={credit.href}>
-              {i > 0 && ', '}
-              <a href={credit.href} target="_blank" rel="noreferrer" className="underline">
-                {credit.label}
-              </a>
-            </span>
-          ))}
-        </p>
-      )}
+      <nav aria-label="Other projects" className="mt-16 grid grid-cols-2 border-y border-ink/15">
+        <Link to={`/work/${previous.slug}`} className="group border-r border-ink/15 px-4 py-6 sm:px-6">
+          <span className="block text-xs font-bold uppercase tracking-widest text-ink/60">Previous</span>
+          <span className="mt-1 block text-xl font-extrabold group-hover:text-rose-ink sm:text-3xl">{previous.title}</span>
+        </Link>
+        <Link to={`/work/${next.slug}`} className="group px-4 py-6 text-right sm:px-6">
+          <span className="block text-xs font-bold uppercase tracking-widest text-ink/60">Next</span>
+          <span className="mt-1 block text-xl font-extrabold group-hover:text-rose-ink sm:text-3xl">{next.title}</span>
+        </Link>
+      </nav>
 
-      <section className="mt-24 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-xl font-bold">Next project</p>
-          <Link
-            to={`/work/${next.slug}`}
-            className="block max-w-3xl text-[13vw] font-extrabold leading-[0.9] tracking-tighter hover:underline md:text-[7vw]"
-          >
-            {next.title}
-          </Link>
-        </div>
-        <Print
-          label={`Open ${next.title}`}
-          rotate={3}
-          snapBack
-          onOpen={() => navigate(`/work/${next.slug}`)}
-          className="w-full max-w-xs shrink-0"
-        >
-          <Picture src={next.cover.src} alt="" className="pointer-events-none" />
-        </Print>
+      <section aria-labelledby="more-work" className="mt-12">
+        <h2 id="more-work" className="px-4 text-sm font-bold uppercase tracking-widest text-ink/60 sm:px-6">
+          More work
+        </h2>
+        <ul className="mt-4 grid grid-cols-2 gap-1 lg:grid-cols-4">
+          {moreWork(project).map((other) => (
+            <li key={other.slug}>
+              <WorkTile project={other} />
+            </li>
+          ))}
+        </ul>
       </section>
 
       <Lightbox images={project.images} index={openIndex} onChange={setOpenIndex} onClose={() => setOpenIndex(null)} />

@@ -39,7 +39,7 @@ export default function Lightbox({ images, index, onChange, onClose }) {
         touchStart.current = event.touches[0].clientX
       }}
       onTouchEnd={handleTouchEnd}
-      className="m-0 h-dvh max-h-none w-screen max-w-none bg-[#0B0B0E] text-white"
+      className="m-0 h-dvh max-h-none w-screen max-w-none bg-ink text-white"
     >
       {image && (
         <div className="flex h-full flex-col">
@@ -52,7 +52,7 @@ export default function Lightbox({ images, index, onChange, onClose }) {
             </button>
           </div>
           <div className="flex min-h-0 flex-1 items-center justify-center px-4">
-            <img src={image.src} alt={image.alt} className="h-full w-full object-contain" />
+            <img src={image.src} alt={image.alt} className="h-auto max-h-full w-auto max-w-full object-contain" />
           </div>
           <div className="flex items-center justify-between gap-4 px-2 pb-2">
             <button type="button" onClick={() => step(-1)} className={buttonClass}>
