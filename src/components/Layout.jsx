@@ -17,7 +17,7 @@ export default function Layout() {
   }, [pathname])
 
   // Project pages count as Work in the menu.
-  const onWork = pathname === '/' || pathname.startsWith('/work')
+  const onWork = pathname === '/' || pathname.startsWith('/work') || pathname.startsWith('/category')
 
   return (
     <MotionConfig reducedMotion="user">

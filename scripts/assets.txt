@@ -1,5 +1,5 @@
 # Which original file becomes which image on the site.
-# Format: original file name in originals/portfolio-pics | path under public/images/work (no extension)
+# Format: original file name in originals/portfolio-pics (or a path inside originals/) | path under public/images/work (no extension)
 # After changing this list, run: npm run images
 
 Canva - download (3).jpg | bayani/portrait-headdress
@@ -101,6 +101,18 @@ Canva - download (31).jpg | photography/sea-sunset
 
 Canva - download (12).jpg | illustration/golden-city
 flowers.png | illustration/flowers
+
+# Digital art pieces, copied from Allyson's Digital Art folder
+digital-art/hero.jpg | digital-art/hero
+digital-art/self-reflection.png | digital-art/self-reflection
+digital-art/zuri-in-wonderland.jpg | digital-art/zuri-in-wonderland
+digital-art/fire.jpg | digital-art/fire
+digital-art/land-of-sin.jpg | digital-art/land-of-sin
+digital-art/prisoner.jpg | digital-art/prisoner
+digital-art/seox.jpg | digital-art/seox
+digital-art/strange-boy.jpg | digital-art/strange-boy
+digital-art/travel-trip.png | digital-art/travel-trip
+digital-art/universe.png | digital-art/universe
 
 # Stills captured from the posted videos (see the links in src/data/projects.js)
 video-stills/ideas-positive.png | video/ideas-positive

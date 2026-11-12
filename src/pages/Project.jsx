@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import Lightbox from '../components/Lightbox.jsx'
 import Picture from '../components/Picture.jsx'
 import WorkTile from '../components/WorkTile.jsx'
+import { categoryPath } from '../data/categories.js'
 import { projects } from '../data/projects.js'
 import { site } from '../data/site.js'
 import NotFound from './NotFound.jsx'
@@ -16,7 +16,11 @@ function moreWork(project) {
 
 export default function Project() {
   const { slug } = useParams()
-  const [openIndex, setOpenIndex] = useState(null)
+  // The picture open in the large viewer is kept in the address (?view=2),
+  // so a picture chosen from a category on the home page opens straight away.
+  const [params, setParams] = useSearchParams()
+  const view = params.get('view')
+  const setOpenIndex = (i) => setParams(i === null ? {} : { view: String(i) }, { replace: true })
 
   const index = projects.findIndex((p) => p.slug === slug)
   if (index === -1) return <NotFound />
@@ -25,6 +29,7 @@ export default function Project() {
   const previous = projects[(index - 1 + projects.length) % projects.length]
   const next = projects[(index + 1) % projects.length]
   const [first, ...rest] = project.images
+  const openIndex = view !== null && project.images[Number(view)] ? Number(view) : null
 
   // The first image may fill the width but never goes taller than the screen.
   // No image is shown bigger than its real size.
@@ -68,7 +73,7 @@ export default function Project() {
             {project.categories.map((category) => (
               <li key={category}>
                 <Link
-                  to={`/?filter=${encodeURIComponent(category)}`}
+                  to={categoryPath(category)}
                   className="inline-block rounded-full bg-rose px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-ink hover:bg-ink hover:text-paper"
                 >
                   {category}
@@ -79,7 +84,7 @@ export default function Project() {
           <h1 className="mt-4 text-4xl font-extrabold leading-[0.95] tracking-tight text-rose-ink sm:text-5xl xl:text-6xl">
             {project.title}
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-ink/80">{project.summary}</p>
+          {project.summary && <p className="mt-5 text-lg leading-relaxed text-ink/80">{project.summary}</p>}
           {project.credits && (
             <p className="mt-4 text-sm text-ink/60">
               Event photos:{' '}

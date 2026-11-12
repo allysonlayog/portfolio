@@ -1,7 +1,8 @@
 # Allyson Layog portfolio
 
-A dark, artwork-first portfolio: the home page is a grid of every project, with filters by type,
-and each project opens its own page with a large image viewer.
+A light, artwork-first portfolio. The front page is a grid of work categories. Each category
+has its own page with a description and every image in it, which open in a large image viewer.
+Projects also have their own pages, linked from the images.
 It is a static site made with React, Vite, Tailwind CSS and Motion, with no backend or database.
 
 ## Run it
@@ -11,7 +12,8 @@ It is a static site made with React, Vite, Tailwind CSS and Motion, with no back
 
 ## Edit content
 
-- Projects: `src/data/projects.js`
+- Projects, and which categories each image belongs to: `src/data/projects.js`
+- Category descriptions, cover images and which tiles are big: `src/data/categories.js`
 - Bio, email, links and resume: `src/data/site.js`
 - Images: see below
 
