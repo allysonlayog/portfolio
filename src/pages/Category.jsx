@@ -1,4 +1,5 @@
 import { Link, useParams, useSearchParams } from 'react-router-dom'
+import CategoryNav from '../components/CategoryNav.jsx'
 import CategoryTile from '../components/CategoryTile.jsx'
 import Lightbox from '../components/Lightbox.jsx'
 import Picture from '../components/Picture.jsx'
@@ -40,10 +41,8 @@ export default function Category() {
       <title>{`${category.name}, ${site.name}`}</title>
 
       <header className="px-4 pt-8 sm:px-6">
-        <Link to="/" className="text-sm font-bold uppercase tracking-widest text-ink/60 hover:text-rose-ink">
-          All work
-        </Link>
-        <h1 className="mt-4 text-4xl font-extrabold leading-[0.95] tracking-tight text-rose-ink sm:text-6xl">{category.name}</h1>
+        <CategoryNav current={category.name} />
+        <h1 className="mt-8 text-4xl font-extrabold leading-[0.95] tracking-tight text-rose-ink sm:text-6xl">{category.name}</h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">{category.summary}</p>
         <p className="mt-4 text-sm text-ink/60">
           {images.length} {images.length === 1 ? 'piece' : 'pieces'}. Open any image to see it larger.

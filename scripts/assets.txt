@@ -35,8 +35,8 @@ Canva - download (8).jpg | pet-food/gaucho
 
 Canva - download (10).jpg | logos/offscript
 logos.png | logos/sightlines
-Canva - download (12).png | logos/wonderq
-Canva - download (13).png | logos/insty-prints
+wonderq-black.png | logos/wonderq
+insty-prints-black.png | logos/insty-prints
 Canva - download (15).png | logos/aged-care-forum
 Canva - download (49).png | logos/team-champion
 
